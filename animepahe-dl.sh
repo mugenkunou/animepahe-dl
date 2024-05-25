@@ -333,7 +333,7 @@ decrypt_segments() {
 
 download_episode() {
     # $1: episode number
-    local num="$1" l pl erropt='' v
+    local num=$(printf "%02d" "$1") l pl erropt='' v
     v="$_SCRIPT_PATH/${_ANIME_NAME}/${num}.mp4"
 
     l=$(get_episode_link "$num")
@@ -408,7 +408,7 @@ main() {
             _ANIME_SLUG="$(get_slug_from_name "$_ANIME_NAME")"
         fi
     fi
-
+    
     [[ "$_ANIME_SLUG" == "" ]] && print_error "Anime slug not found!"
     _ANIME_NAME="$(grep "$_ANIME_SLUG" "$_ANIME_LIST_FILE" \
         | tail -1 \
